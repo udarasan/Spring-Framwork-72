@@ -13,20 +13,15 @@ public class AppInitializer {
         context.register(AppConfig.class);
         context.refresh();
 
-        SpringBean bean1 =context.getBean(SpringBean.class);
-        bean1.testBean();
-        System.out.println(bean1);
-
         TestBean1 testBean1=context.getBean(TestBean1.class);
         System.out.println(testBean1);
-        TestBean2 testBean2=context.getBean(TestBean2.class);
+
+        //request bean from bean ID(Class Name (first letter ->simple letter)
+        TestBean1 byBeanID= (TestBean1) context.getBean("testBean1");
+        System.out.println(byBeanID);
+        TestBean2 testBean2=context.getBean("udara",TestBean2.class);
         System.out.println(testBean2);
-        TestBean3  testBean3=context.getBean(TestBean3.class);
-        System.out.println(testBean3);
-        /*Runtime.getRuntime().addShutdownHook(new Thread(()->{
-            System.out.println("JVM is about to shutdown");
-            context.close();
-        }));*/
+
         context.registerShutdownHook();
 
     }
