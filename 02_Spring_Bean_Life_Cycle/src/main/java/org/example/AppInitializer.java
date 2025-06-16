@@ -12,18 +12,9 @@ public class AppInitializer {
         context.register(AppConfig.class);
         context.refresh();
 
-/*        SpringBean springBean1=context.getBean(SpringBean.class);
-        System.out.println(springBean1);
-
-        SpringBean springBean2=context.getBean(SpringBean.class);
-        System.out.println(springBean2);*/
-
         MyConnection myConnection1 = context.getBean(MyConnection.class);
-        System.out.println(myConnection1);
         MyConnection myConnection2 = context.getBean(MyConnection.class);
-        System.out.println(myConnection2);
-
-
+        //System.out.println(myConnection);
         context.registerShutdownHook();
     }
 }
