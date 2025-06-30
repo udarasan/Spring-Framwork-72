@@ -10,6 +10,7 @@
         <module name="03_DI_With_Spring" />
         <module name="04_FullModeVsLightMode" />
         <module name="07_Spring_Env" />
+        <module name="09_RESTController" />
         <module name="05_Configrations" />
         <module name="01_Spring_Core" />
         <module name="02_Spring_Bean_Life_Cycle" />
