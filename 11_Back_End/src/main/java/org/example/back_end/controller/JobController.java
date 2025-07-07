@@ -29,5 +29,11 @@ public class JobController {
     public List<JobDTO> getAllJobs(){
         return jobService.getAllJobs();
     }
+    @PatchMapping("status/{id}")
+    private String changeJobStatus(@PathVariable("id") String jobId){
+        System.out.println("Job Id: "+jobId);
+        jobService.changeJobStatus(jobId);
+        return "Job Status Changed";
+    }
 
 }

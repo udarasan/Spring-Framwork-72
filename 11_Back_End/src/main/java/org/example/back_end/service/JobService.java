@@ -10,4 +10,6 @@ public interface JobService {
     void updateJob(JobDTO jobDTO);
 
     List<JobDTO> getAllJobs();
+
+    void changeJobStatus(String jobId);
 }
