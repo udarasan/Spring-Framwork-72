@@ -1,11 +1,14 @@
 package org.example.back_end.repository;
 
 import jakarta.transaction.Transactional;
+import org.example.back_end.dto.JobDTO;
 import org.example.back_end.entity.Job;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface JobRepository extends JpaRepository<Job, Integer> {
@@ -16,4 +19,5 @@ public interface JobRepository extends JpaRepository<Job, Integer> {
             ,nativeQuery = true)
     void updateJobStatus(String jobId);
 
+    List<Job> findJobByJobTitleContainingIgnoreCase(String keyword);
 }
