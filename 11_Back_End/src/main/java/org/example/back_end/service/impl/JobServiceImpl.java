@@ -19,4 +19,9 @@ public class JobServiceImpl implements JobService {
     public void saveJob(JobDTO jobDTO) {
         jobRepository.save(modelMapper.map(jobDTO, Job.class));
     }
+
+    @Override
+    public void updateJob(JobDTO jobDTO) {
+        jobRepository.save(modelMapper.map(jobDTO, Job.class));
+    }
 }

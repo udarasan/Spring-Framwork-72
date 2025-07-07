@@ -18,4 +18,10 @@ public class JobController {
         return "Job Created";
     }
 
+    @PutMapping
+    public String updateJob(@RequestBody JobDTO jobDTO) {
+        jobService.updateJob(jobDTO);
+        return "Job Updated";
+    }
+
 }
