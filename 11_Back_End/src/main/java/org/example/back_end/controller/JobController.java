@@ -3,6 +3,7 @@ package org.example.back_end.controller;
 import lombok.RequiredArgsConstructor;
 import org.example.back_end.dto.JobDTO;
 import org.example.back_end.service.JobService;
+import org.example.back_end.service.impl.JobServiceImpl;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
