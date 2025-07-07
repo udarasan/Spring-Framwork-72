@@ -35,5 +35,10 @@ public class JobController {
         jobService.changeJobStatus(jobId);
         return "Job Status Changed";
     }
+    @GetMapping("search/{keyword}")
+    public List<JobDTO> searchJob(@PathVariable("keyword") String keyword){
+        return jobService.getAllJobsByKeyword(keyword);
+    }
+
 
 }

@@ -39,4 +39,9 @@ public class JobServiceImpl implements JobService {
     public void changeJobStatus(String jobId) {
         jobRepository.updateJobStatus(jobId);
     }
+
+    @Override
+    public List<JobDTO> getAllJobsByKeyword(String keyword) {
+        return List.of();
+    }
 }
