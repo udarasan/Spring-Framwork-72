@@ -23,4 +23,5 @@ public class Job {
     private String location;
     private String type;
     private String jobDescription;
+    private String status;
 }
