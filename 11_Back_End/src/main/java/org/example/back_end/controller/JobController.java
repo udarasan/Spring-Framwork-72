@@ -6,6 +6,8 @@ import org.example.back_end.service.JobService;
 import org.example.back_end.service.impl.JobServiceImpl;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("api/v1/job")
 @RequiredArgsConstructor
@@ -18,10 +20,14 @@ public class JobController {
         return "Job Created";
     }
 
-    @PutMapping
+    @PutMapping("update")
     public String updateJob(@RequestBody JobDTO jobDTO) {
         jobService.updateJob(jobDTO);
         return "Job Updated";
+    }
+    @GetMapping("getalljobs")
+    public List<JobDTO> getAllJobs(){
+        return jobService.getAllJobs();
     }
 
 }
