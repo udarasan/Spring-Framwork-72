@@ -4,6 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.example.back_end.dto.JobDTO;
 import org.example.back_end.service.JobService;
 import org.example.back_end.service.impl.JobServiceImpl;
+import org.example.back_end.util.APIResponse;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,19 +29,30 @@ public class JobController {
         return "Job Updated";
     }
     @GetMapping("getalljobs")
-    public List<JobDTO> getAllJobs(){
-        return jobService.getAllJobs();
+    public ResponseEntity<APIResponse<List<JobDTO>>> getAllJobs(){
+        List<JobDTO> jobDTOS = jobService.getAllJobs();
+        return ResponseEntity.ok(new APIResponse<>(
+                200,
+                "Job List Fetched Successfully",
+                jobDTOS
+        ));
     }
     @PatchMapping("status/{id}")
-    private String changeJobStatus(@PathVariable("id") String jobId){
-        System.out.println("Job Id: "+jobId);
+    private ResponseEntity<APIResponse<String>> changeJobStatus(@PathVariable("id") String jobId){
         jobService.changeJobStatus(jobId);
-        return "Job Status Changed";
+        return ResponseEntity.ok(
+                new APIResponse<>(
+                        200,
+                        "Job Status Changed Successfully",
+                        null));
     }
     @GetMapping("search/{keyword}")
-    public List<JobDTO> searchJob(@PathVariable("keyword") String keyword){
-        return jobService.getAllJobsByKeyword(keyword);
+    public ResponseEntity<APIResponse<List<JobDTO>>> searchJob(@PathVariable("keyword") String keyword){
+        List<JobDTO> jobDTOS = jobService.getAllJobsByKeyword(keyword);
+        return ResponseEntity.ok(new APIResponse<>(
+                200,
+                "Job List Fetched Successfully",
+                jobDTOS
+        ));
     }
-
-
 }
