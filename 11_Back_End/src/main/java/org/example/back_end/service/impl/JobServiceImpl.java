@@ -1,6 +1,7 @@
 package org.example.back_end.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.example.back_end.dto.JobDTO;
 import org.example.back_end.entity.Job;
 import org.example.back_end.exceptions.ResourceNotFound;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.Collections;
 import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class JobServiceImpl implements JobService {
@@ -23,6 +25,7 @@ public class JobServiceImpl implements JobService {
     @Override
     public void saveJob(JobDTO jobDTO) {
         if (jobDTO==null){
+            log.error("JobDTO cannot be null");
             throw new IllegalArgumentException("JobDTO cannot be null");
         }
         jobRepository.save(modelMapper.map(jobDTO, Job.class));

@@ -2,6 +2,7 @@ package org.example.back_end.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.example.back_end.dto.JobDTO;
 import org.example.back_end.service.JobService;
 import org.example.back_end.service.impl.JobServiceImpl;
@@ -19,11 +20,19 @@ import java.util.List;
 @RequestMapping("api/v1/job")
 @RequiredArgsConstructor
 @CrossOrigin
+@Slf4j
 public class JobController {
     private final JobService jobService;
 
     @PostMapping("create")
     public ResponseEntity<APIResponse<String>> createJob(@Valid @RequestBody JobDTO jobDTO) {
+        log.info("Job Created Successfully"); // businness logic - informations
+        log.debug("Job Details : {}",jobDTO); // details of debugging information
+        log.error("Job Creation Failed"); // system error or failers
+        log.trace("Job Creation Trace"); // data tracing
+        log.warn("Job Creation Warn"); // potential problems
+
+        // save the job
         jobService.saveJob(jobDTO);
         return new ResponseEntity(new APIResponse<>(
                 201,
