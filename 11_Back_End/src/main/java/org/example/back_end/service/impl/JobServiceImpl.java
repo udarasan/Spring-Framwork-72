@@ -41,17 +41,29 @@ public class JobServiceImpl implements JobService {
     @Override
     public List<JobDTO> getAllJobs() {
         List<Job> allJobs=jobRepository.findAll();
+        if (allJobs.isEmpty()){
+            throw new ResourceNotFound("No Job Found");
+        }
         return modelMapper.map(allJobs, new TypeToken<List<JobDTO>>(){}.getType());
     }
 
     @Override
     public void changeJobStatus(String jobId) {
+        if (jobId==null){
+            throw new IllegalArgumentException("Job Id cannot be null");
+        }
         jobRepository.updateJobStatus(jobId);
     }
 
     @Override
     public List<JobDTO> getAllJobsByKeyword(String keyword) {
+        if (keyword==null){
+            throw new IllegalArgumentException("Keyword cannot be null");
+        }
        List<Job> alljobs=jobRepository.findJobByJobTitleContainingIgnoreCase(keyword);
+       if (alljobs.isEmpty()){
+           throw new ResourceNotFound("No Job Found");
+       }
        return modelMapper.map(alljobs, new TypeToken<List<JobDTO>>(){}.getType());
     }
 }
