@@ -1,12 +1,16 @@
 package org.example.back_end.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.back_end.dto.JobDTO;
 import org.example.back_end.service.JobService;
 import org.example.back_end.service.impl.JobServiceImpl;
 import org.example.back_end.util.APIResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,7 +23,7 @@ public class JobController {
     private final JobService jobService;
 
     @PostMapping("create")
-    public ResponseEntity<APIResponse<String>> createJob(@RequestBody JobDTO jobDTO) {
+    public ResponseEntity<APIResponse<String>> createJob(@Valid @RequestBody JobDTO jobDTO) {
         jobService.saveJob(jobDTO);
         return new ResponseEntity(new APIResponse<>(
                 201,

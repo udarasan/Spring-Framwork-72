@@ -1,10 +1,15 @@
 package org.example.back_end.exceptions;
 
+import jakarta.validation.ValidationException;
 import org.example.back_end.util.APIResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -27,4 +32,22 @@ public class GlobalExceptionHandler {
                 null
         ),HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<APIResponse<Object>> handleMethodArgumentNotValidException
+            (MethodArgumentNotValidException ex){
+        Map<String,String> errors = new HashMap<>();
+        ex.getBindingResult().getFieldErrors()
+                .forEach((fieldError)->{
+            errors.put(fieldError.getField()
+                    ,fieldError.getDefaultMessage());
+        });
+        return new ResponseEntity<>(new APIResponse<>(
+                HttpStatus.BAD_REQUEST.value(),
+                "Validation Failed",
+                errors
+        ),HttpStatus.BAD_REQUEST);
+
+    }
+
 }
