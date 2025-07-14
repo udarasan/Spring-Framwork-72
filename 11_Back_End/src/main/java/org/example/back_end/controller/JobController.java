@@ -5,6 +5,7 @@ import org.example.back_end.dto.JobDTO;
 import org.example.back_end.service.JobService;
 import org.example.back_end.service.impl.JobServiceImpl;
 import org.example.back_end.util.APIResponse;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,15 +19,23 @@ public class JobController {
     private final JobService jobService;
 
     @PostMapping("create")
-    public String createJob(@RequestBody JobDTO jobDTO) {
+    public ResponseEntity<APIResponse<String>> createJob(@RequestBody JobDTO jobDTO) {
         jobService.saveJob(jobDTO);
-        return "Job Created";
+        return new ResponseEntity(new APIResponse<>(
+                201,
+                "Job Created Successfully",
+                null
+        ), HttpStatus.CREATED);
     }
 
     @PutMapping("update")
-    public String updateJob(@RequestBody JobDTO jobDTO) {
+    public ResponseEntity<APIResponse<String>> updateJob(@RequestBody JobDTO jobDTO) {
         jobService.updateJob(jobDTO);
-        return "Job Updated";
+        return ResponseEntity.ok(new APIResponse<>(
+                200,
+                "Job Updated Successfully",
+                null
+        ));
     }
     @GetMapping("getalljobs")
     public ResponseEntity<APIResponse<List<JobDTO>>> getAllJobs(){
