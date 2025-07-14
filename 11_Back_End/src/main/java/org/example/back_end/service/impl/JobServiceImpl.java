@@ -3,6 +3,7 @@ package org.example.back_end.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.example.back_end.dto.JobDTO;
 import org.example.back_end.entity.Job;
+import org.example.back_end.exceptions.ResourceNotFound;
 import org.example.back_end.repository.JobRepository;
 import org.example.back_end.service.JobService;
 import org.modelmapper.ModelMapper;
@@ -21,11 +22,19 @@ public class JobServiceImpl implements JobService {
 
     @Override
     public void saveJob(JobDTO jobDTO) {
+        if (jobDTO==null){
+            throw new IllegalArgumentException("JobDTO cannot be null");
+        }
         jobRepository.save(modelMapper.map(jobDTO, Job.class));
     }
 
     @Override
     public void updateJob(JobDTO jobDTO) {
+        if (jobDTO==null||jobDTO.getId()==null){
+            throw new IllegalArgumentException("Job Id cannot be null");
+        }
+        jobRepository.findById(jobDTO.getId()).orElseThrow(
+                ()->new ResourceNotFound("Job Not Found"));
         jobRepository.save(modelMapper.map(jobDTO, Job.class));
     }
 
