@@ -17,7 +17,7 @@ import lombok.Setter;
 public class Job {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     private String jobTitle;
     private String company;
     private String location;
