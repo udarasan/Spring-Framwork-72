@@ -21,6 +21,9 @@ public class JobServiceImpl implements JobService {
 
     @Override
     public void saveJob(JobDTO jobDTO) {
+        if(jobDTO.getId()==null){
+            throw new IllegalArgumentException("Job Id is null");
+        }
         jobRepository.save(modelMapper.map(jobDTO, Job.class));
     }
 
