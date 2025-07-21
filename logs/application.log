@@ -136,3 +136,8 @@
 2025-07-14T14:51:05.144+05:30 DEBUG 10392 --- [11_Back_End] [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
 2025-07-14T14:51:05.256+05:30  INFO 10392 --- [11_Back_End] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
 2025-07-14T14:51:05.263+05:30  INFO 10392 --- [11_Back_End] [main] org.example.back_end.Application         : Started Application in 4.317 seconds (process running for 5.131)
+2025-07-14T15:12:18.844+05:30  INFO 10392 --- [11_Back_End] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-07-14T15:12:18.851+05:30  INFO 10392 --- [11_Back_End] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-07-14T15:12:18.855+05:30  INFO 10392 --- [11_Back_End] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-07-14T15:12:18.857+05:30  INFO 10392 --- [11_Back_End] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-07-14T15:12:18.863+05:30  INFO 10392 --- [11_Back_End] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

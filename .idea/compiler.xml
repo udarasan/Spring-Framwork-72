@@ -18,11 +18,21 @@
         <module name="02_Spring_Bean_Life_Cycle" />
         <module name="06_Runtime_Value_Injection" />
       </profile>
+      <profile name="Annotation profile for 13_Spring_Security_With_JWT" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar" />
+        </processorPath>
+        <module name="O13_Spring_Security_With_JWT" />
+      </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Back_End" options="-parameters" />
+      <module name="O13_Spring_Security_With_JWT" options="-parameters" />
     </option>
   </component>
 </project>
