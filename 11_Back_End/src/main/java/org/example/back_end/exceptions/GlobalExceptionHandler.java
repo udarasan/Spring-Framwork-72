@@ -34,13 +34,10 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<APIResponse<Object>> handleMethodArgumentNotValidException
-            (MethodArgumentNotValidException ex){
+    public ResponseEntity<APIResponse<Object>> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex){
         Map<String,String> errors = new HashMap<>();
-        ex.getBindingResult().getFieldErrors()
-                .forEach((fieldError)->{
-            errors.put(fieldError.getField()
-                    ,fieldError.getDefaultMessage());
+        ex.getBindingResult().getFieldErrors().forEach((fieldError)->{
+            errors.put(fieldError.getField(),fieldError.getDefaultMessage());
         });
         return new ResponseEntity<>(new APIResponse<>(
                 HttpStatus.BAD_REQUEST.value(),

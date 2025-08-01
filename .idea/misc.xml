@@ -15,6 +15,7 @@
         <option value="$PROJECT_DIR$/09_RESTController/pom.xml" />
         <option value="$PROJECT_DIR$/11_Back_End/pom.xml" />
         <option value="$PROJECT_DIR$/13_Spring_Security_With_JWT/pom.xml" />
+        <option value="$PROJECT_DIR$/14_Spring_Testing/pom.xml" />
       </list>
     </option>
   </component>
